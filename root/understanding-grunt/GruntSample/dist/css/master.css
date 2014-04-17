@@ -1,0 +1,7 @@
+div {
+  background: #ccc;
+  font-size: 1em; }
+  div div.foo {
+    font-size: 0.5em; }
+    div div.foo ul.bar {
+      background: #ddd; }

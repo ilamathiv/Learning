@@ -1,0 +1,1 @@
+var model={init:function(){console.log("")},setData:function(){}},View={initialize:function(){},render:function(){},postRender:function(){}};
