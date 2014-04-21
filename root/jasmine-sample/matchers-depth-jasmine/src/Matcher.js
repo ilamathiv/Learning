@@ -2,6 +2,7 @@
 var sampleData = {
 	value : 10,
 	nullValue : null,
+	zeroValue : 0,
 	trueValue : true,
 	falseValue : false,
 	emptyString : "",
