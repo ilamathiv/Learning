@@ -36,6 +36,20 @@
 		className : 'contact-container',
 		template : $("#contactTemplate").html(),
 
+		events : {
+			"click button.delete" : "deleteContact"
+		},
+
+		deleteContact : function() {
+			var removedType = this.model.get("type").toLowerCase();
+
+			this.model.destroy();
+			this.remove(); // removes the particular view from the html
+			if (_.indexOf(directory.getTypes(), removedType) === -1) {
+		        directory.$el.find("#filter select").children("[value='" + removedType + "']").remove();
+		    }
+		},
+
 		render : function() {
 			var tmpl = Handlebars.compile(this.template);
 			this.$el.html(tmpl(this.model.toJSON()));
@@ -56,11 +70,11 @@
 			this.collection = new Directory(contacts);
 			this.render();
 			var select = this.createSelect();
-			console.log(select);
 			this.$el.find("#filter").append(select);
 			this.on("change:filterType", this.filterByType, this);
 			this.collection.on("reset", this.render, this);
 			this.collection.on("add", this.render, this);
+			this.collection.on("remove", this.removeContact, this);
 		},
 
 		render : function() {
@@ -140,6 +154,19 @@
 				this.collection.add(new Contact(newContact));
 			}
 
+		},
+
+		removeContact : function(removedModel) {
+			var removed = removedModel.attributes;
+			if (removed.photo === "img/placeholder.png") {
+        		delete removed.photo;
+    		}
+
+			_.each(contacts, function(contact){
+				if(_.isEqual(contact, removed)){
+					contacts.splice(_.indexOf(contacts, contact), 1);
+				}
+			});
 		},
 
 		showForm : function() {
