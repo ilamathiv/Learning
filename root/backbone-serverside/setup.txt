@@ -1,0 +1,39 @@
+Server and Project setup:
+
+1.Install node.js
+
+2.Intsall express
+	>npm install -g express
+
+3.Install express-generator
+	>npm install -g express-generator
+
+4.Create Project
+	>express [projectname]
+
+5.Edit the Package.json according to our app need(for MongoDB - "mongodb": "*","mongoskin": "*")
+
+6.Install Dependencies
+	>npm install
+
+7.Run the server
+	>npm start
+	then server started on 3000 port(http://localhost:3000)
+
+
+MongoDB setup:
+1.Download the MongoDB from http://mongodb.org/.
+2.This will give a zip file, then extract this and copy the bin folder to wherever you want.
+3.Then create data folder in the project, then go to the directory where we have place the MongoDB bin folder. From that directory run the below command
+	>mongod --dbpath c:\node\nodetest1\data
+4.Open second command prompt and go the MongoDB directory and type the belom command
+	>mongo
+5.Create a database, by default it will show test db when you execute the step4, you can change to any your db by using the below command
+	>use [dbname]
+6.Then we can insert the data to the created db by
+	>db.[collectionname].insert({});
+7.For retrieving you can use below command
+	>db.[collectionname].find().pretty();
+
+
+
